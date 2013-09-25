@@ -1,0 +1,9 @@
+---  
+- name:  Install Tomcat
+  apt: name={{ item }} state=installed
+  with_items:
+    - tomcat
+
+- name: Enable Tomcat Service
+  service: name=tomcat state=started enabled=yes
+
