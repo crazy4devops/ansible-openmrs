@@ -6,11 +6,20 @@ An Ansible playbook for deploying [openmrs](http://openmrs.org).
 ## What it does
 * Installs Openjdk-jre-7, tomcat7, and mysql-server.
 * Configures tomcat and mysql.
+<<<<<<< HEAD
 * Downloads and installs OpenMRS war file
 
 ## Requirements
 * Ansible **1.3** installed on client
 * root username/password on server, ssh installed
+=======
+* Downloads and installs OpenMRS war file.
+
+## Requirements
+* Ansible **1.3** installed on client.
+* Debian based distro installed on server (tested with Ubuntu 12.04).
+* root username/password on server, ssh installed.
+>>>>>>> 3f15b5c22a08db195cca847379b6ea4cfe5f5c77
 
 ## Vars and setup
 You will need to copy `group_vars/all.example` to `group_vars/all` then edit `group_vars/all` with the mysql root password you want to set or have already set.
@@ -26,4 +35,8 @@ Drop the -k if you are logging in with a public/private key.
 
 `ansible-playbook -i hosts site.yml`
 
+<<<<<<< HEAD
 After this is complete your initial setup should be available at $ip:8080/openmrs
+=======
+After this is complete your initial setup should be available at $ip:8080/openmrs.
+>>>>>>> 3f15b5c22a08db195cca847379b6ea4cfe5f5c77
