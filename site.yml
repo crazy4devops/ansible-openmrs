@@ -5,6 +5,6 @@
 
   roles:
     - java
-    - mysql
     - tomcat
+    - mysql
     - openmrs

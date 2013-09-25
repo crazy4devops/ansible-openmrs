@@ -5,8 +5,5 @@
     - mysql-server
     - python-mysqldb
 
-- name: Copy over my.cnf
-
-
-- name: 
-
+- name: Set Mysql root password
+  mysql_user: check_implicit_admin=yes login_user=root login_password={{ mysqlrootpwd }} name=root password={{ mysqlrootpwd }} state=present
