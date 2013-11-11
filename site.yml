@@ -1,10 +1,26 @@
 ---
-- name: Setup server
-  hosts: servers
+- name: Setup Openmrs
+  hosts: all
+  user: root
+
+  roles:
+
+  hosts: appservers
   user: root
 
   roles:
     - java
     - tomcat
-    - mysql
     - openmrs
+
+  hosts: dbservers
+  user: root
+
+  roles:
+    - mysql
+
+  hosts: webservers
+  user: root
+
+#  roles:
+#    - apache

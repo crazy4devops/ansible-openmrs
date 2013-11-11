@@ -1,2 +1,10 @@
-[servers]
+[appservers]
 10.1.1.1
+
+[dbservers]
+10.1.1.1
+
+[webservers]
+10.1.1.1
+
+
