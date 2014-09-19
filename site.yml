@@ -3,8 +3,7 @@
   hosts: all
   user: root
 
-  roles:
-
+- name: Setup Appservers
   hosts: appservers
   user: root
 
@@ -13,12 +12,14 @@
     - tomcat
     - openmrs
 
+- name: Setup DB servers
   hosts: dbservers
   user: root
 
   roles:
     - mysql
 
+- name: Setup webservers
   hosts: webservers
   user: root
 
