@@ -37,11 +37,18 @@
               state=present
   ignore_errors: yes
 
+- name: Create {{openmrs_db_name}}
+  mysql_db: name={{openmrs_db_name}}
+            login_user={{openmrs_db_login_user}}
+            login_password={{openmrs_db_login_password}}
+            encoding=utf8
+            state=present
+
 - name: Copy over starter db
   copy: src=openmrs.sql
         dest=/tmp/openmrs.sql
 
-- name: Create {{openmrs_db_name}} and import starter db
+- name: Import starter db
   mysql_db: name={{openmrs_db_name}}
             login_user={{openmrs_db_login_user}}
             login_password={{openmrs_db_login_password}}
