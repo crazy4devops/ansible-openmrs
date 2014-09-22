@@ -55,7 +55,7 @@
 
 - name: Insert openmrs-runtime.properties
   template: src=openmrs-runtime.properties.j2
-            dest={{openmrs_config_dir}}
+            dest={{openmrs_config_dir}}/openmrs-runtime.properties
             owner={{tomcat_user}}
             group={{tomcat_user}}
             mode=0600
