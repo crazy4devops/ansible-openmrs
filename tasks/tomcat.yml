@@ -1,0 +1,25 @@
+# TODO: Break off into own role
+- name: Install tomcat7 + JRE7 (Debian)
+  apt: name={{item}}
+       state=installed
+       update_cache=yes
+       cache_valid_time=86400
+  with_items:
+    - tomcat7
+    - openjdk-7-jre-headless
+  when: ansible_os_family == 'Debian'
+
+- name: Install tomcat7 + JRE7 (RedHat)
+  yum: name={{item}}
+       state=installed
+  with_items:
+    - tomcat
+    - java-1.7.0-openjdk-headless
+  when: ansible_os_family == 'RedHat'
+
+- name: Adjust JAVA_OPTS for tomcat
+  lineinfile: dest={{tomcat_config_file}}
+              regexp=^JAVA_OPTS=
+              line='JAVA_OPTS="-Djava.awt.headless=true -Xmx512m -Xms512m -XX:PermSize=256m -XX:MaxPermSize=256m -XX:NewSize=128m -XX:+UseConcMarkSweepGC"'
+              state=present
+  notify: restart tomcat

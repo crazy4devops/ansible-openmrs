@@ -1,30 +1,38 @@
-playbook-openmrs
-======================
+Role Name
+=========
 
-An Ansible playbook for deploying [openmrs](http://openmrs.org).
+A brief description of the role goes here.
 
-## What it does
-* Installs Openjdk-jre-7, tomcat7, and mysql-server.
-* Configures tomcat and mysql.
-* Downloads and installs OpenMRS war file
+Requirements
+------------
 
-## Requirements
-* Ansible **1.3** installed on client.
-* Debian based distro installed on server (tested with Ubuntu 12.04).
-* root username/password on server, ssh installed.
+Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
 
-## Vars and setup
-You will need to copy `group_vars/all.example` to `group_vars/all` then edit `group_vars/all` with the mysql root password you want to set or have already set.
+Role Variables
+--------------
 
-Also copy `hosts.example` to `hosts` and enter the ip or hostname of your server in place of the ip.
+A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
 
-By default we try to login with root via ssh, if you have another user with sudo access on your server(e.g. Amazon) edit `site.yml` and change the user and uncomment the sudo line.
+Dependencies
+------------
 
-## Running the play
-`ansible-playbook -k -i hosts site.yml`
+A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
 
-Drop the -k if you are logging in with a public/private key. 
+Example Playbook
+----------------
 
-`ansible-playbook -i hosts site.yml`
+Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-After this is complete your initial setup should be available at $ip:8080/openmrs
+    - hosts: servers
+      roles:
+         - { role: username.rolename, x: 42 }
+
+License
+-------
+
+BSD
+
+Author Information
+------------------
+
+An optional section for the role authors to include contact information, or a website (HTML is not allowed).

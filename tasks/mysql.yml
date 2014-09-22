@@ -1,0 +1,8 @@
+# TODO: Break this off into own role
+- name: Install mysql
+  apt: name={{item}}
+       state=installed
+  with_items:
+   - mysql-server
+   - python-mysqldb
+  when: ansible_os_family == 'Debian'

@@ -1,0 +1,8 @@
+usr_tomcat: /usr/share/tomcat
+var_tomcat: /var/lib/tomcat
+etc_tomcat: /etc/tomcat
+tomcat_service: tomcat
+tomcat_user: tomcat
+tomcat_config_file: /etc/tomcat/tomcat.conf
+
+mysql_service: mysqld

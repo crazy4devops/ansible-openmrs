@@ -1,5 +1,6 @@
-hosts
-group_vars/all
+
+# vim
+*.swp
 
 ## OSX
 .DS_Store

@@ -1,0 +1,55 @@
+---
+- include_vars: "{{ item }}"
+  with_first_found:
+   - "../vars/{{ ansible_distribution }}.yml"
+   - "../vars/{{ ansible_os_family }}.yml"
+   - "../vars/default.yml"
+
+- include: install_deps.yml
+  when: openmrs_install_deps
+
+- name: Stop tomcat (if running)
+  service: name={{tomcat_service}} state=stopped
+
+- name: Download OpenMRS {{openmrs_version}} war
+  get_url: url=http://mavenrepo.openmrs.org/nexus/service/local/repositories/releases/content/org/openmrs/web/openmrs-webapp/{{openmrs_version}}/openmrs-webapp-{{openmrs_version}}.war
+           dest={{tomcat_webapps}}/openmrs.war
+           owner={{tomcat_user}}
+           group={{tomcat_user}}
+
+- name: Create OpenMRS dirs
+  file: path={{item}}
+        state=directory
+        owner={{tomcat_user}}
+        group={{tomcat_user}}
+        recurse=yes
+  with_items:
+   - "{{openmrs_config_dir}}"
+   - "{{openmrs_config_dir}}/modules"
+
+# DB setup
+- name: Create {{openmrs_db_name}}
+  mysql_db: check_implicit_admin=yes
+            name={{openmrs_db_name}}
+            login_user={{openmrs_db_login_user}}
+            login_password={{openmrs_db_login_password}}
+            encoding=utf8
+            state=present
+
+- name: Create {{openmrs_db_user}}
+  mysql_user: check_implicit_admin=yes
+              login_user={{openmrs_db_login_user}}
+              login_password={{openmrs_db_login_password}}
+              name={{openmrs_db_user}}
+              password={{openmrs_db_user_password}}
+              state=present
+              priv={{openmrs_db_name}}.*:ALL
+
+- name: Insert openmrs-runtime.properties
+  template: src=openmrs-runtime.properties.j2
+            dest={{openmrs_config_dir}}
+            owner={{tomcat_user}}
+            group={{tomcat_user}}
+            mode=0600
+  notify: restart tomcat
+

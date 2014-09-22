@@ -1,0 +1,4 @@
+usr_tomcat: /usr/share/tomcat
+var_tomcat: /var/lib/tomcat
+etc_tomcat: /etc/tomcat
+tomcat_service: tomcat
