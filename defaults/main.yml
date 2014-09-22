@@ -7,12 +7,14 @@ openmrs_config_dir: "{{usr_tomcat}}/.OpenMRS"
 
 # Directory war will be downloaded to
 tomcat_webapps: "{{var_tomcat}}/webapps"
+# Will try to set based on OS in vars/
 tomcat_user: tomcat
 
-
 # DB settings
+# Please change passwords below
 openmrs_db_name: openmrs
 openmrs_db_user: openmrs_user
 openmrs_db_user_password: openmrs_user
+# Dont change this unless you already have mysql setup
 openmrs_db_login_user: root
 openmrs_db_login_password: root
