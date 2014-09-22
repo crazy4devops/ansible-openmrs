@@ -28,9 +28,17 @@
    - "{{openmrs_config_dir}}/modules"
 
 # DB setup
+- name: Try to set root password if not set
+  mysql_user: check_implicit_admin=yes
+              login_user=root
+              login_password={{openmrs_db_login_password}}
+              name=root
+              password={{openmrs_db_login_password}}
+              state=present
+  ignore_errors: yes
+
 - name: Create {{openmrs_db_name}}
-  mysql_db: check_implicit_admin=yes
-            name={{openmrs_db_name}}
+  mysql_db: name={{openmrs_db_name}}
             login_user={{openmrs_db_login_user}}
             login_password={{openmrs_db_login_password}}
             encoding=utf8
