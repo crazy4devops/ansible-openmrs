@@ -26,6 +26,7 @@
   with_items:
    - "{{openmrs_config_dir}}"
    - "{{openmrs_config_dir}}/modules"
+   - "{{var_tomcat}}/activemq-data"
 
 # DB setup
 - name: Try to set root password if not set
