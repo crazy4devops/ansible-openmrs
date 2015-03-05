@@ -1,6 +1,6 @@
 ---
 # Version of OpenMRS to install.
-openmrs_version: 1.9.8
+openmrs_version: 1.11.0
 # Determines whether to install dependencies needed all on the same box.  JRE, Tomcat, MySQL.  Turning this off will assume you already have these in place.
 openmrs_install_deps: true
 openmrs_config_dir: "{{usr_tomcat}}/.OpenMRS"
